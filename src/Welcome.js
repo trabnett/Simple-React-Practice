@@ -4,7 +4,7 @@ class Welcome extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "bob"
+            name: "Your Name Please"
         }
     };
 
@@ -16,10 +16,10 @@ class Welcome extends Component {
     }
     render(){
         return(
-            <div>
+            <div className="welcome">
                 <form onSubmit={this.handleSubmit}>
                     <label onChange={this.handleChange}>
-                        Name:
+                        Please enter your name to continue:
                         <input type="text" name="name" />
                     </label>
                     <input type="submit" value="Submit" />
