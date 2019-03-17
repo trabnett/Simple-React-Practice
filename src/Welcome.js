@@ -11,7 +11,8 @@ class Welcome extends Component {
     handleChange = (e) => {
         this.setState({name: e.target.value})
     }
-    handleSubmit = () => {
+    handleSubmit = (e) => {
+        e.preventDefault()
         this.props.setName(this.state.name)
     }
     render(){

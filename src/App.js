@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Welcome from './Welcome'
 import Header from './Header'
+import Form from './Form'
+import Comments from './Comments'
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +11,8 @@ class App extends Component {
       this.state = {
         noName: true,
         name: "",
-        entries: [],
+        positive_comments: [],
+        negative_comments: [],
         current_entry: "",
         entryShow: false
       }
@@ -23,6 +26,16 @@ class App extends Component {
   logout = () => {
     this.setState({noName: true})
     console.log(this.state)
+  }
+  formEnter = (e) => {
+    if (e.rating > 2){
+      this.setState({positive_comments: [...this.state.positive_comments, e]}, () => {
+        console.log(this.state.entries)
+      })
+    } else {
+      this.setState({negative_comments: [...this.state.negative_comments, e]})
+    }
+
   }
 
   render() {
@@ -44,19 +57,28 @@ class App extends Component {
         </div>
       );
 
-    } else {
+    } else if (this.state.positive_comments && this.state.positive_comments.length > 0) {
       return(
         <div>
           <Header name={this.state.name} logout={this.logout}/>
           <div className="App-body">
             <p>Okay, Lets make a comment!</p>
+            <Form formEnter={this.formEnter}/>
+            <Comments positive_comments={this.state.positive_comments} negative_comments={this.state.negative_comments}/>
           </div>
         </div>
+      )} else {
+        return (
+          <div>
+          <Header name={this.state.name} logout={this.logout}/>
+          <div className="App-body">
+            <p>Okay, Lets make a comment!</p>
+            <Form formEnter={this.formEnter}/>
+          </div>
+          </div>
+        )
 
-
-
-      )
-    }
+      }
   }
 }
 

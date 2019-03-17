@@ -1,3 +1,8 @@
+#body {
+  background-image: url('./pexels-photo-988872.jpeg');
+  background-size: 100%;
+}
+
 .App {
   text-align: center;
 }
@@ -9,7 +14,6 @@
 }
 
 .App-body {
-  background-color: aqua;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -33,7 +37,6 @@
 }
 .welcome {
   min-height: 100vh;
-  background-color: aqua;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,6 +47,15 @@
   align-items: center;
   justify-content: space-between;
   margin: 1em;
+
+}
+.header-background {
+  background-color: aliceblue;
+  border-radius: 5px;
+  border: 1px solid black;
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
 }
 .user-name {
   display: flex;
@@ -51,4 +63,14 @@
 }
 .header-button{
   display: flex;
+}
+.form{
+  display: flex;
+
+}
+.basic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
