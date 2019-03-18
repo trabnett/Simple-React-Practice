@@ -19,16 +19,39 @@ class Comments extends Component {
         this.setState({comment: e.target.value})
     }
 
+    handleNegativeClick = (e, type) => {
 
+    }
+    handlePositveClick = () => {
+        console.log(this)
+
+    }
 
     render(){
-        if (this.props.positive_comments){
-            console.log("====>", this.props.positive_comments)
-            
-            return(
-                <h1 className="basic">{this.props.positive_comments[0].comment}</h1>
-            )
-        }
+        return(
+            <div className="comment-section">
+                <div>{this.props.positive_comments.map(function(comment, idx){
+                    return(
+                        <tr key={idx}>
+                            <td>{comment.comment}</td>
+                            <button>-</button><td>{comment.rating}</td><button>+</button>
+                        </tr>
+                    )
+                })}</div>
+                <div>{this.props.negative_comments.map(function(comment, idx){
+                    return(
+                        <tr key={idx}>
+                            <td>{comment.comment}</td>
+                            <button>-</button><td>{comment.rating}</td><button>+</button>
+
+                        </tr>
+                    )
+                })}
+
+                </div>
+            </div>
+        )
+
 
 
         

@@ -11,6 +11,7 @@ class Form extends Component {
         e.preventDefault()
         const obj = {comment: this.state.comment, rating: 3}
         this.props.formEnter(obj)
+        this.setState({comment: ""})
 
     }
     handleChange = (e) => {

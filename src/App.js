@@ -11,8 +11,8 @@ class App extends Component {
       this.state = {
         noName: true,
         name: "",
-        positive_comments: [],
-        negative_comments: [],
+        positive_comments: [{comment:"hey yall", rating: 5}, {comment: "whaaaat", rating: 4}],
+        negative_comments: [{comment: "not good", rating: 2}, {comment: "even worse", rating: 1}],
         current_entry: "",
         entryShow: false
       }
