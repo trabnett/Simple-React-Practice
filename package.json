@@ -1,7 +1,11 @@
 {
-  "name": "practice",
+  "name": "deploy",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.15.2"
+  },
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
