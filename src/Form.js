@@ -25,10 +25,11 @@ class Form extends Component {
         return(
             <form className="form" onSubmit={this.handleSubmit}>
             <label>
-              Comment:
-              <textarea value={this.state.comment} onChange={this.handleChange} />
+                <textarea className="form-textarea" value={this.state.comment} maxlength="90" placeholder="Type etiher a positive or negative comment here, and then rate how postive or negative it is."onChange={this.handleChange} />
             </label>
-            <input type="submit" value="Submit" />
+            <div>
+                <input className="form-button" type="submit" value="Submit" />
+            </div>
           </form>
         )
     }

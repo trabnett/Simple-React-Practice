@@ -18,14 +18,18 @@ class Welcome extends Component {
     render(){
         return(
             <div className="welcome">
-                <form onSubmit={this.handleSubmit}>
-                    <label onChange={this.handleChange}>
-                        Please enter your name to continue:
-                        <input type="text" name="name" />
-                    </label>
-                    <input type="submit" value="Submit" />
-                </form>
                 <h1>{this.state.name}</h1>
+                    <form onSubmit={this.handleSubmit}>
+                        <label onChange={this.handleChange}>
+                            Please enter your name to continue:
+                            <div className="name-input">
+                                <input type="text" name="name" />
+                                <div>
+                                    <input type="submit" value="Submit" />
+                                </div>
+                            </div>
+                        </label>
+                    </form>
             </div>
         )
     }

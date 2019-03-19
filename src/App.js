@@ -48,11 +48,9 @@ class App extends Component {
     output.negative_comments.reverse()
     return output
   }
- 
 
   render() {
     let output = this.sortComments(store.getState().comments)
-    console.log(output, "<============")
     if (this.state.noName) {
       return(
         <Welcome setName={this.setName}/>
@@ -63,44 +61,49 @@ class App extends Component {
         <div>
           <Header name={store.getState().name} logout={this.logout}/>
           <div className="App-body">
-            <p>
+            <h2>
               Hello {store.getState().name}! Welcome to my app!
-            </p>
+            </h2>
             <button onClick={this.handleClick}>do you want do make an comment?</button>
           </div>
         </div>
       );
 
     } else if (output) {
+      store.subscribe(() => {this.triggerCounter()})
+      console.log(store.getState(), "<========")
       return(
         <div>
           <Header name={store.getState().name} logout={this.logout}/>
           <div className="App-body">
-            <p>Okay, Lets make a comment!</p>
+            <h2>Okay, Lets make a comment!</h2>
             <Form formEnter={this.formEnter}/>
-            <button onClick={this.triggerCounter}></button>
-            <table className="positve">
-              <tr>Positive Comments</tr>
-              <div>{output.positive_comments.map(function(comment, idx){
-                      return(
-                          <tr key={idx}>
-                              <CommentCard data={comment} />
-                          </tr>
-                      )
-                  })}</div>
-            </table>
-            <table className="negative">
-              <tr>Negative Comments</tr>
-              <div>{output.negative_comments.map(function(comment, idx){
-                      return(
-                          <tr key={idx}>
-                              <CommentCard data={comment} />
-                          </tr>
-                      )
-                  })}</div>
-            </table>
+            <div className="tables">
+                <table className="table">
+                  <tr>
+                    <th>Positive Comments</th>
+                    <th>Negative Comments</th>
+                  </tr>
+                    <td>{output.positive_comments.map(function(comment, idx){
+                          return(
+                              <tr key={idx}>
+                                  <CommentCard data={comment} />
+                              </tr>
+                          )
+                      })}
+                    </td>
+                  <td>{output.negative_comments.map(function(comment, idx){
+                          return(
+                              <tr key={idx}>
+                                  <CommentCard data={comment} />
+                              </tr>
+                          )
+                      })}
+                    </td>
+                </table>
+              </div>
+            </div>
           </div>
-        </div>
       )} else {
         return (
           <div>

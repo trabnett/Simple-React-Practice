@@ -1,17 +1,14 @@
 #body {
   background-image: url('./pexels-photo-988872.jpeg');
   background-size: 100%;
+  margin-top: 4em
 }
 
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
+
 
 .App-body {
   min-height: 100vh;
@@ -21,6 +18,23 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
+}
+.tables {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 1.5em;
+  width: 90%;
+}
+.table {
+  width: 100%;
+  table-layout: fixed;
+}
+.positive {
+  display: flex;
+}
+.negative {
+  display: flex;
 }
 
 .App-link {
@@ -41,6 +55,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 2.5em;
+}
+.welcome-button{
+  border-radius: 5px;
+}
+.name-input{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .header {
   display: flex;
@@ -64,9 +87,32 @@
 .header-button{
   display: flex;
 }
+th, td {
+  border: 1px solid black;
+  border-radius: 4px;
+}
+.card{
+  border: 1px solid black;
+  border-radius: 6px;
+}
+.card-button{
+  display: flex;
+}
+.button{
+  border-radius: 8px;
+  max-height: 20%;
+}
 .form{
   display: flex;
+  align-items: center;
+  flex-direction: column;
 
+}
+.form-textarea{
+  border-radius: 5px;
+  min-height: 75px;
+  width: 220px;
+  font-size: 14px;
 }
 .basic {
   display: flex;

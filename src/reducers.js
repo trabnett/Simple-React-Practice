@@ -3,7 +3,7 @@ import { ADD_NAME } from "./constants";
 import { CHANGE_RATING } from "./constants";
 
 const initialState = {
-  comments: [{id: 1, comment:"hey yall", rating: 5}, {id: 2, comment: "whaaaat", rating: 4}, {id: 3, comment: "not good", rating: 2}, {id: 4, comment: "even worse", rating: 1}],
+  comments: [{id: 1, comment:"It's a beautiful day", rating: 5}, {id: 2, comment: "spring is just around the corner", rating: 4}, {id: 3, comment: "get out of my way", rating: 2}, {id: 4, comment: "you stink", rating: 1}],
   name: []
 };
 function rootReducer(state = initialState, action) {

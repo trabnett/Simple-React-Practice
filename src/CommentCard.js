@@ -7,37 +7,38 @@ class CommentCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment: "",
-            rating: 0
+            comment: this.props.data.comment,
+            rating: this.props.data.rating,
+            id: this.props.data.id
         }
 
     };
     handlePositiveClick = (e) => {
-        if (this.state.rating < 5){
-            let num = this.state.rating + 1
-            this.setState({rating: num}) 
-            store.dispatch(changeRating ({rating: num, id: this.props.data.id}))
-
+        if (this.props.data.rating < 5){
+            let num = this.props.data.rating + 1
+            this.setState({rating: num}, () => {
+                store.dispatch(changeRating ({rating: num, id: this.props.data.id}))
+            }) 
             }          
     }
     handleNegativeClick = (e) => {
-        if (this.state.rating > 0){
-            let num = this.state.rating - 1
-            this.setState({rating: num}) 
-            store.dispatch(changeRating ({rating: num, id: this.props.data.id}))
+        if (this.props.data.rating > 0){
+            let num = this.props.data.rating - 1
+            this.setState({rating: num}, () => {
+                store.dispatch(changeRating ({rating: num, id: this.props.data.id}))
+            }) 
         }
+    }
 
-    }
-    componentDidMount(){
-        this.setState({comment: this.props.data.comment, rating: this.props.data.rating})
-    }
 
     render(){
-
+        store.subscribe(() => this.setState({comment: this.props.data.comment, rating: this.props.data.rating}))
             return(
-                <div>
+                <div classname="card">
                     <h1>{this.props.data.comment}</h1>
-                    <button onClick={this.handlePositiveClick.bind(this)}>+</button><td>{this.state.rating}</td><button onClick={this.handleNegativeClick}>-</button>
+                    <div className="card-button">
+                        <button className="button" onClick={this.handlePositiveClick}>+</button><td>{this.props.data.rating}</td><button className="button" onClick={this.handleNegativeClick}>-</button>
+                    </div>
                 </div>
             )
 
