@@ -3,34 +3,38 @@ import './App.css';
 import Welcome from './Welcome'
 import Header from './Header'
 import Form from './Form'
-import Comments from './Comments'
 import CommentCard from './CommentCard'
+import store from "./store";
+import { addComment } from "./actions";
+import { addName } from "./actions";
 
 class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
         noName: true,
-        name: "",
-        comments: [{comment:"hey yall", rating: 5}, {comment: "whaaaat", rating: 4}, {comment: "not good", rating: 2}, {comment: "even worse", rating: 1}],
-        current_entry: "",
         entryShow: false,
-        counter: 1
+        counter: 0
       }
   };
+  triggerCounter = () => {
+    this.setState({counter: (this.state.counter + 1)})
+  }
   setName = (x) => {
-    this.setState({name: x, noName: false})
+    store.dispatch( addName({ name: x }) )
+    this.setState({noName: false})
   }
   handleClick = () => {
     this.setState({entryShow: true})
   }
   logout = () => {
-    this.setState({noName: true, comments: []})
-    console.log(this.state)
+    this.setState({noName: true})
   }
   formEnter = (e) => {
-      this.setState({comments: [...this.state.comments, e]})
-  }
+
+      store.dispatch( addComment({ e }))
+      this.triggerCounter()
+    }
   sortComments = (comments) => {
     let output = {positive_comments: [], negative_comments: []}
     comments.map(function(comment,i){
@@ -44,15 +48,11 @@ class App extends Component {
     output.negative_comments.reverse()
     return output
   }
-  handlePositveClick = (e) => {
-    console.log(e.target.value)
-  }
-  positveButton = () => {
-
-  }
+ 
 
   render() {
-    let output = this.sortComments(this.state.comments)
+    let output = this.sortComments(store.getState().comments)
+    console.log(output, "<============")
     if (this.state.noName) {
       return(
         <Welcome setName={this.setName}/>
@@ -61,10 +61,10 @@ class App extends Component {
     if (!this.state.entryShow){
       return (
         <div>
-          <Header name={this.state.name} logout={this.logout}/>
+          <Header name={store.getState().name} logout={this.logout}/>
           <div className="App-body">
             <p>
-              Hello {this.state.name}! Welcome to my app!
+              Hello {store.getState().name}! Welcome to my app!
             </p>
             <button onClick={this.handleClick}>do you want do make an comment?</button>
           </div>
@@ -74,10 +74,11 @@ class App extends Component {
     } else if (output) {
       return(
         <div>
-          <Header name={this.state.name} logout={this.logout}/>
+          <Header name={store.getState().name} logout={this.logout}/>
           <div className="App-body">
             <p>Okay, Lets make a comment!</p>
             <Form formEnter={this.formEnter}/>
+            <button onClick={this.triggerCounter}></button>
             <table className="positve">
               <tr>Positive Comments</tr>
               <div>{output.positive_comments.map(function(comment, idx){
@@ -103,7 +104,7 @@ class App extends Component {
       )} else {
         return (
           <div>
-          <Header name={this.state.name} logout={this.logout}/>
+          <Header name={store.getState().name} logout={this.logout}/>
           <div className="App-body">
             <p>Okay, Lets make a comment!</p>
             <Form formEnter={this.formEnter}/>

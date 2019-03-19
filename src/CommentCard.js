@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import store from './store';
+import { changeRating } from "./actions";
 
 
 class CommentCard extends Component {
@@ -13,17 +15,16 @@ class CommentCard extends Component {
     handlePositiveClick = (e) => {
         if (this.state.rating < 5){
             let num = this.state.rating + 1
-            this.setState({rating: num, comment: this.props.data.comment}, () => {
-                console.log(this.state)
-            }) 
+            this.setState({rating: num}) 
+            store.dispatch(changeRating ({rating: num, id: this.props.data.id}))
 
-        }
-      
+            }          
     }
     handleNegativeClick = (e) => {
         if (this.state.rating > 0){
             let num = this.state.rating - 1
             this.setState({rating: num}) 
+            store.dispatch(changeRating ({rating: num, id: this.props.data.id}))
         }
 
     }

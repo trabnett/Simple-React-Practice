@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import store from "./store";
+import { addComment } from "./actions";
 
 class Form extends Component {
     constructor(props) {
@@ -9,7 +11,8 @@ class Form extends Component {
     };
     handleSubmit = (e) => {
         e.preventDefault()
-        const obj = {comment: this.state.comment, rating: 3}
+        let id = store.getState().comments.length +1
+        const obj = {id: id, comment: this.state.comment, rating: 3}
         this.props.formEnter(obj)
         this.setState({comment: ""})
 
