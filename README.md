@@ -22,6 +22,7 @@ npm start
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ```
+or visit: https://evening-falls-90260.herokuapp.com/
 
 ## Dependencies
     react
